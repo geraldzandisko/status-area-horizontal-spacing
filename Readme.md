@@ -1,6 +1,12 @@
 This merely reduces horizontal spacing between notification icons.
 
-It essentially lets you modify .panel-button's -natural-padding attribute (default 12px, changed to 6px by default).
+Notification tray before (default 12px hpadding):
+
+![original with 12px padding](./notification_tray_original.png "Original, 12px padding")
+
+Notification tray after (6px hpadding):
+
+![after with 6px padding](./notification_tray_original.png "After, 6px padding")
 
 To modify it edit 'stylesheet.js' and change the line:
 
@@ -15,5 +21,7 @@ If you reduce it to less than 6px (it looks kind of funny then) you will also ha
 to be the same.
 
 
-Alternatively, you can just modify /usr/share/gnome-shell/theme/gnome-shell.css
+Alternatively, you can just modify `/usr/share/gnome-shell/theme/gnome-shell.css`
  and change the lines there...
+
+It essentially lets you modify the .panel-button -natural-padding attribute (default 12px).

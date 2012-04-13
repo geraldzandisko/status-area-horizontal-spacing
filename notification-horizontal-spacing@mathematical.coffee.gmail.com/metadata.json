@@ -3,5 +3,6 @@
     "uuid": "notification-horizontal-spacing@mathematical.coffee.gmail.com",
     "name": "Notification Tray Horizontal Spacing",
     "description": "Reduces the horizontal spacing between icons in the top-right notification area",
-    "version": 1
+    "version": 1,
+    "url": "https://bitbucket.org/mathematicalcoffee/notification-tray-horizontal-spacing-gnome-shell-extension"
 }
