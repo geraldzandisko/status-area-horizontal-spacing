@@ -1,4 +1,4 @@
-This merely reduces horizontal spacing between notification icons.
+This is a GNOME shell extension that reduces the horizontal spacing between notification icons.
 
 Notification tray before (default 12px hpadding):
 
