@@ -2,11 +2,11 @@ This merely reduces horizontal spacing between notification icons.
 
 Notification tray before (default 12px hpadding):
 
-![original with 12px padding](./notification_tray_original.png "Original, 12px padding")
+![original with 12px padding](http://1.bp.blogspot.com/-Kdw2lhWlwxg/T4fGBVeSycI/AAAAAAAABUk/YuPbxK_HGAw/s320/notification_tray_original.png "Original, 12px padding")
 
 Notification tray after (6px hpadding):
 
-![after with 6px padding](./notification_tray_original.png "After, 6px padding")
+![after with 6px padding](http://1.bp.blogspot.com/-k61-1F47Ylk/T4fHW1SgdtI/AAAAAAAABUw/ovl51ORLZ0g/s320/notification_tray_after.png "After, 6px padding")
 
 To modify it edit 'stylesheet.js' and change the line:
 
