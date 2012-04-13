@@ -1,0 +1,7 @@
+{
+    "shell-version": ["3.2.2.1"],
+    "uuid": "notification-horizontal-spacing@mathematical.coffee.gmail.com",
+    "name": "Notification Tray Horizontal Spacing",
+    "description": "Reduces the horizontal spacing between icons in the top-right notification area",
+    "version": 1
+}

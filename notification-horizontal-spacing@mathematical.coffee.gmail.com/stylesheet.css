@@ -1,0 +1,4 @@
+.panel-button {
+    -natural-hpadding: 6px; /* default used by GNOME-shell is 12, will change to 6 */
+    -minimum-hpadding: 6px; /* Shouldn't need to be changed unless you want padding < 6px */
+}
