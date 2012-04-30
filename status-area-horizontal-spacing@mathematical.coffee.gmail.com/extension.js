@@ -1,3 +1,4 @@
+// -*- mode: js2; indent-tabs-mode: nil; js2-basic-offset: 4 -*-
 /**
  * StatusAreaHorizontalSpacing extension
  * v0.1
@@ -21,6 +22,17 @@ const St = imports.gi.St;
 const Main = imports.ui.main;
 const Shell = imports.gi.Shell;
 
+// GNOME 3.4:
+const ExtensionUtils = imports.misc.extensionUtils;
+const Me = ExtensionUtils.getCurrentExtension();
+const Convenience = Me.imports.convenience;
+// NOTE: if using schemas, I think I need to use the makefile to
+// somehow "install" it for use - increases user experience *only* if
+// they install from gnome-shell-extensions website! o'wise they have to 
+// make/make install....
+// So, do I want to upload to the website? & mantain a different version with
+// the preferences in the file?
+
 /****************************
  * CODE
  ****************************/
@@ -28,12 +40,17 @@ const Shell = imports.gi.Shell;
 let defaultStylesheet, patchStylesheet;
 
 function init(extensionMeta) {
+    // Convenience.initTranslations();
+
     // store the location of the stylesheet
     defaultStylesheet = Main._defaultCssStylesheet;
     patchStylesheet = extensionMeta.path + '/stylesheet.css';
 }
 
 function enable() {
+    //let settings = Convenience.getSettings();
+    //let padding = settings.get_string('padding') || _("6");
+
     let themeContext = St.ThemeContext.get_for_stage(global.stage);
     // make a new theme, remember to load our own stylesheet.css which
     // has the -natural-hspacing modified.
