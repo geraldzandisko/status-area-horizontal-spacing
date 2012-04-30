@@ -1,10 +1,10 @@
-This is a GNOME shell extension that reduces the horizontal spacing between notification icons.
+This is a GNOME shell extension that reduces the horizontal spacing between status area icons (top-left of the panel: volume indicator, etc). (Tested in GNOME 3.2, 3.4).
 
-Notification tray before (default 12px hpadding):
+Status area before (default 12px hpadding):
 
 ![original with 12px padding](http://1.bp.blogspot.com/-Kdw2lhWlwxg/T4fGBVeSycI/AAAAAAAABUk/YuPbxK_HGAw/s320/notification_tray_original.png "Original, 12px padding")
 
-Notification tray after (6px hpadding):
+Status area after (6px hpadding):
 
 ![after with 6px padding](http://1.bp.blogspot.com/-k61-1F47Ylk/T4fHW1SgdtI/AAAAAAAABUw/ovl51ORLZ0g/s320/notification_tray_after.png "After, 6px padding")
 
@@ -25,3 +25,10 @@ Alternatively, you can just modify `/usr/share/gnome-shell/theme/gnome-shell.css
  and change the lines there...
 
 It essentially lets you modify the .panel-button -natural-padding attribute (default 12px).
+
+#Installation
+Download the files (go to 'Downloads' > select the zip file).
+
+Either start `gnome-tweak-tool` and select 'Shell Extensions > Install Shell Extension > (zip file you just downloaded', OR you can unzip the file in `~/.local/share/gnome-shell/extensions` and use `dconf-editor` to modify '/org/gnome/shell/enabled-extensions' to include `'status-area-horizontal-spacing@mathematical.coffee.gmail.com'`.
+
+In GNOME 3.4, you could alternatively `gnome-shell-extension-tool --enable status-area-horizontal-spacing@mathematical.coffee.gmail.com`.

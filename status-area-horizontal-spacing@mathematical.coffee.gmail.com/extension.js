@@ -1,12 +1,9 @@
-// hmm, I'd love to present a GUI with a slider for horizontal spacing, but how to open the GUI?
-// It shouldn't take up an icon, obviously... :P
-//
 /**
- * NotificationHorizontalSpacing extension
+ * StatusAreaHorizontalSpacing extension
  * v0.1
  *
  * This extension essentially modifies the "-natural-hspacing" 
- * attribute of panel-buttons (i.e. icons in the notification tray)
+ * attribute of panel-buttons (i.e. indicators in the status area)
  * so that they can be closer together.
  *
  * The default is 12.
