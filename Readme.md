@@ -27,8 +27,8 @@ It essentially lets you modify the .panel-button -natural-padding attribute (def
 
 ##Installation
 
-Download the files (go to 'Downloads' &gt; select the zip file).
+Download the files (go to 'Downloads' and select the zip file).
 
-Either start `gnome-tweak-tool` and select 'Shell Extensions &gt; Install Shell Extension &gt; (zip file you just downloaded', OR you can unzip the file in `~/.local/share/gnome-shell/extensions` and use `dconf-editor` to modify '/org/gnome/shell/enabled-extensions' to include `'status-area-horizontal-spacing@mathematical.coffee.gmail.com'`.
+Either start `gnome-tweak-tool` and select 'Shell Extensions > Install Shell Extension > (zip file you just downloaded', OR you can unzip the file in `~/.local/share/gnome-shell/extensions` and use `dconf-editor` to modify '/org/gnome/shell/enabled-extensions' to include `'status-area-horizontal-spacing@mathematical.coffee.gmail.com'`.
 
 In GNOME 3.4, you could alternatively `gnome-shell-extension-tool --enable status-area-horizontal-spacing@mathematical.coffee.gmail.com`.
