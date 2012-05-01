@@ -2,11 +2,11 @@ This is a GNOME shell extension that reduces the horizontal spacing between stat
 
 Status area before (default 12px hpadding):
 
-![original with 12px padding](http://1.bp.blogspot.com/-Kdw2lhWlwxg/T4fGBVeSycI/AAAAAAAABUk/YuPbxK_HGAw/s320/notification_tray_original.png "Original, 12px padding")
+![original (12px padding)](http://cdn.bitbucket.org/mathematicalcoffee/status-area-horizontal-spacing-gnome-shell-extension/downloads/status_area_original.png)
 
 Status area after (6px hpadding):
 
-![after with 6px padding](http://1.bp.blogspot.com/-k61-1F47Ylk/T4fHW1SgdtI/AAAAAAAABUw/ovl51ORLZ0g/s320/notification_tray_after.png "After, 6px padding")
+![after with 6px padding](http://cdn.bitbucket.org/mathematicalcoffee/status-area-horizontal-spacing-gnome-shell-extension/downloads/status_area_6px.png)
 
 To modify it edit 'stylesheet.js' and change the line:
 
@@ -29,6 +29,4 @@ It essentially lets you modify the .panel-button -natural-padding attribute (def
 
 Download the files (go to 'Downloads' and select the zip file).
 
-Either start `gnome-tweak-tool` and select 'Shell Extensions > Install Shell Extension > (zip file you just downloaded', OR you can unzip the file in `~/.local/share/gnome-shell/extensions` and use `dconf-editor` to modify '/org/gnome/shell/enabled-extensions' to include `'status-area-horizontal-spacing@mathematical.coffee.gmail.com'`.
-
-In GNOME 3.4, you could alternatively `gnome-shell-extension-tool --enable status-area-horizontal-spacing@mathematical.coffee.gmail.com`.
+Start `gnome-tweak-tool` and select 'Shell Extensions > Install Shell Extension > (zip file you just downloaded)'. 
