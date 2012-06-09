@@ -18,60 +18,72 @@
  *
  * 2012 mathematical.coffee@gmail.com
  */
+const Mainloop = imports.mainloop;
 const St = imports.gi.St;
-const Main = imports.ui.main;
 const Shell = imports.gi.Shell;
 
-// GNOME 3.4:
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
-const Convenience = Me.imports.convenience;
-// NOTE: if using schemas, I think I need to use the makefile to
-// somehow "install" it for use - increases user experience *only* if
-// they install from gnome-shell-extensions website! o'wise they have to 
-// make/make install....
-// So, do I want to upload to the website? & mantain a different version with
-// the preferences in the file?
+const Main = imports.ui.main;
 
 /****************************
  * CODE
  ****************************/
+/* Option 1:
+ * - set application/theme/default_stylesheet, load custom ones.
+ * Option 2:
+ * - listen to/patch Main._rightBox.add... and add
+ *   a style with natural-hpadding.
+ * TODO: listen to signal for add to status area?
+ */
+const HPADDING = 6;
+let actorAddedID,
+    styleLine = '-natural-hpadding: %dpx'.format(HPADDING);
 
-let defaultStylesheet, patchStylesheet;
+/* Note: the gnome-shell class always overrides any you add in the extension.
+ * So doing add_style_class(my_style_with_less_hpadding) doesn't work.
+ * However set_style sets the inline style and that works.
+ */
+function overrideStyle(container, actor) {
+    if (actor.has_style_class_name('panel-button')) {
+        if (actor._original_inline_style_ === undefined) {
+            actor._original_inline_style_ = actor.get_style();
+        }
+        actor.set_style(styleLine + '; ' + (actor._original_inline_style_ || ''));
+    }
+}
+
+function restoreOriginalStyle(actor) {
+    if (actor.has_style_class_name('panel-button') && actor._original_inline_style_ !== undefined) {
+        actor.set_style(actor._original_inline_style_);
+        delete actor._original_inline_style_;
+    }
+}
 
 function init(extensionMeta) {
-    // Convenience.initTranslations();
-
-    // store the location of the stylesheet
-    defaultStylesheet = Main._defaultCssStylesheet;
-    patchStylesheet = extensionMeta.path + '/stylesheet.css';
+    // if you set it below 6 and it looks funny, that's your fault!
+    if (HPADDING < 6) {
+        styleLine += '; -minimum-hpadding: %dpx'.format(HPADDING);
+    }
 }
 
 function enable() {
-    //let settings = Convenience.getSettings();
-    //let padding = settings.get_string('padding') || _("6");
+    /* set style for everything in _rightBox */
+    let children = Main.panel._rightBox.get_children();
+    for (let i = 0; i < children.length; ++i) {
+        overrideStyle(Main.panel._rightBox, children[i]);
+    }
 
-    let themeContext = St.ThemeContext.get_for_stage(global.stage);
-    // make a new theme, remember to load our own stylesheet.css which
-    // has the -natural-hspacing modified.
-    let theme = new St.Theme ({ application_stylesheet: patchStylesheet,
-                                theme_stylesheet: defaultStylesheet });
-    try {
-            themeContext.set_theme(theme);
-        } catch (e) {
-            global.logError('Stylesheet parse error: ' + e);
-        }
-
+    /* connect signal */
+    actorAddedID = Main.panel._rightBox.connect('actor-added', overrideStyle);
 }
 
 function disable() {
-    // Undo the changes we did with the stylesheet
-    let themeContext = St.ThemeContext.get_for_stage(global.stage);
-    // just restore the default style sheet
-    let theme = new St.Theme( {theme_stylesheet: defaultStylesheet} )
-    try {
-            themeContext.set_theme(theme);
-        } catch (e) {
-            global.logError('Stylesheet parse error: ' + e);
-        }
+    /* disconnect signal */
+    if (actorAddedID) {
+        Main.panel._rightBox.disconnect(actorAddedID);
+    }
+    /* remove style class name. */
+    let children = Main.panel._rightBox.get_children();
+    for (let i = 0; i < children.length; ++i) {
+        restoreOriginalStyle(children[i]);
+    }
 }
