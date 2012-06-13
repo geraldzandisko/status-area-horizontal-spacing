@@ -7,7 +7,8 @@
         ],
     "uuid": "status-area-horizontal-spacing@mathematical.coffee.gmail.com",
     "name": "Status Area Horizontal Spacing",
-    "description": "Reduces the horizontal spacing between icons in the top-right status area",
+    "description": "Reduce the horizontal spacing between icons in the top-right status area",
     "version": 1,
-    "url": "https://bitbucket.org/mathematicalcoffee/status-area-horizontal-spacing-gnome-shell-extension"
+    "url": "https://bitbucket.org/mathematicalcoffee/status-area-horizontal-spacing-gnome-shell-extension",
+    "dev-version" : "1.0"
 }
