@@ -2,7 +2,7 @@
  * StatusAreaHorizontalSpacing extension
  * v1.0
  *
- * This extension essentially modifies the "-natural-hspadding" 
+ * This extension essentially modifies the "-natural-hpadding" 
  * attribute of panel-buttons (i.e. indicators in the status area)
  * so that they can be closer together.
  *
