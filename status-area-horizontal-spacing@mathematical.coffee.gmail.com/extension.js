@@ -1,40 +1,39 @@
-// -*- mode: js2; indent-tabs-mode: nil; js2-basic-offset: 4 -*-
 /**
  * StatusAreaHorizontalSpacing extension
- * v0.1
+ * v1.0
  *
- * This extension essentially modifies the "-natural-hspacing" 
+ * This extension essentially modifies the "-natural-hspadding" 
  * attribute of panel-buttons (i.e. indicators in the status area)
  * so that they can be closer together.
  *
  * The default is 12.
  *
- * Code shamelessy modified from
- * http://blog.fpmurphy.com/2011/06/patching-a-gnome-shell-theme.html
- * 2011 Finnbarr P. Murphy
- * which is further modified in:
- * http://rlog.rgtti.com/2011/12/06/a-gnome-shell-extension-to-change-the-top-panel-look/
- * 2011 Romani Gianetti
+ * It does this by using 'set_style' to override the '-natural-hpadding'
+ * property of anything added to Main.panel._rightBox.
+ * It listens to the 'add-actor' signal of Main.panel._rightBox to override
+ * the style.
  *
  * 2012 mathematical.coffee@gmail.com
+ */
+
+/// Set the padding between icons in pixels here.
+/// Default for gnome-shell is 12, and 6 or more is recommended.
+const HPADDING = 6;
+
+/****************************
+ * CODE
+ ****************************/
+/* Option 1:
+ * - create a new theme, application stylesheet is mine,
+ *   demote all others, load custom stylesheets, replace current theme.
+ * Option 2:
+ * - listen to Main.panel._rightBox add-actor and do set_style.
  */
 const Mainloop = imports.mainloop;
 const St = imports.gi.St;
 const Shell = imports.gi.Shell;
 
 const Main = imports.ui.main;
-
-/****************************
- * CODE
- ****************************/
-/* Option 1:
- * - set application/theme/default_stylesheet, load custom ones.
- * Option 2:
- * - listen to/patch Main._rightBox.add... and add
- *   a style with natural-hpadding.
- * TODO: listen to signal for add to status area?
- */
-const HPADDING = 6;
 let actorAddedID,
     styleLine = '-natural-hpadding: %dpx'.format(HPADDING);
 
