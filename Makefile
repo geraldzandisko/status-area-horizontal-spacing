@@ -1,7 +1,7 @@
 #=============================================================================
 EXTENSION=status-area-horizontal-spacing
 EXTENSION_BASE=@mathematical.coffee.gmail.com
-FILES=metadata.json extension.js stylesheet.css
+FILES=metadata.json *.js stylesheet.css
 #=============================================================================
 default_target: all
 .PHONY: clean all zip
