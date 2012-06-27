@@ -31,6 +31,8 @@ However this will be lost every time you change themes, upgrade gnome-shell, etc
 
 ##Installation
 
+One-click install from extensions.gnome.org: [link here](https://extensions.gnome.org/extension/355/status-area-horizontal-spacing/).
+
 Download the files (go to 'Downloads' and select the zip file).
 
 Start `gnome-tweak-tool` and select 'Shell Extensions > Install Shell Extension > (zip file you just downloaded)'. 
