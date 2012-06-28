@@ -1,6 +1,6 @@
 /**
  * StatusAreaHorizontalSpacing extension
- * v1.0
+ * v2.0
  *
  * This extension essentially modifies the "-natural-hpadding" 
  * attribute of panel-buttons (i.e. indicators in the status area)
@@ -29,12 +29,13 @@ const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 const Convenience = Me.imports.convenience;
 
-let actorAddedID, hpaddingChangedID, styleLine, settings;
+let actorAddedID, hpaddingChangedID, styleLine, padding, settings;
 
 /* Note: the gnome-shell class always overrides any you add in the extension.
  * So doing add_style_class(my_style_with_less_hpadding) doesn't work.
  * However set_style sets the inline style and that works.
  */
+// why undefined?
 function overrideStyle(container, actor) {
     if (actor.has_style_class_name('panel-button')) {
         if (actor._original_inline_style_ === undefined) {
@@ -53,13 +54,12 @@ function restoreOriginalStyle(actor) {
 
 /* Apply hpadding style to all existing actors & listen for more */
 function applyStyles() {
-    let padding  = settings.get_int('hpadding'),
+    padding = settings.get_int('hpadding');
     styleLine = '-natural-hpadding: %dpx'.format(padding);
     // if you set it below 6 and it looks funny, that's your fault!
     if (padding < 6) {
         styleLine += '; -minimum-hpadding: %dpx'.format(padding);
     }
-
 
     /* set style for everything in _rightBox */
     let children = Main.panel._rightBox.get_children();
@@ -91,6 +91,7 @@ function init(extensionMeta) {
 
 function enable() {
     applyStyles();
+    /* whenever the settings get changed, re-layout everything. */
     hpaddingChangedID = settings.connect('changed::hpadding', function () {
         removeStyles();
         applyStyles();
