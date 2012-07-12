@@ -19,4 +19,5 @@ zip: all
 	zip -rq $(EXTENSION)$(EXTENSION_BASE).zip $(FILES:%=$(EXTENSION)$(EXTENSION_BASE)/%)
 
 dev-zip: all
-	zip -rqj $(EXTENSION)$(EXTENSION_BASE).zip $(FILES:%=$(EXTENSION)$(EXTENSION_BASE)/%)
+	(cd $(EXTENSION)$(EXTENSION_BASE); \
+		zip -rq ../$(EXTENSION)$(EXTENSION_BASE).zip $(FILES))
