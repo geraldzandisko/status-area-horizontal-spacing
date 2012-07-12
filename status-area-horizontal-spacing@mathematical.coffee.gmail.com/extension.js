@@ -14,6 +14,10 @@
  * the style.
  *
  * 2012 mathematical.coffee@gmail.com
+ *
+ * v2.0.1:
+ * BUGFIX: User menu button resumes normal spacing on clicking/hovering.
+ * (panel.js _boxStyleChanged button.style='transition-duration: 0')
  */
 
 /****************************
@@ -35,17 +39,37 @@ let actorAddedID, hpaddingChangedID, styleLine, padding, settings;
  * So doing add_style_class(my_style_with_less_hpadding) doesn't work.
  * However set_style sets the inline style and that works.
  */
-// why undefined?
 function overrideStyle(container, actor) {
     if (actor.has_style_class_name('panel-button')) {
         if (actor._original_inline_style_ === undefined) {
             actor._original_inline_style_ = actor.get_style();
         }
         actor.set_style(styleLine + '; ' + (actor._original_inline_style_ || ''));
+        /* listen for the style being set externally so we can re-apply our style */
+        // TODO: somehow throttle the number of calls to this - add a timeout with
+        // a flag?
+        if (!actor._statusAreaHorizontalSpacingSignalID) {
+            actor._statusAreaHorizontalSpacingSignalID =
+                actor.connect('style-changed', function () {
+                    let currStyle = actor.get_style();
+                    if (currStyle && !currStyle.match(styleLine)) {
+                        // re-save the style (if it has in fact changed)
+                        actor._original_inline_style_ = currStyle;
+                        // have to do this or else the overrideStyle call will trigger
+                        // another call of this, firing an endless series of these signals.
+                        // TODO: a ._style_pending which prevents it rather than disconnect/connect?
+                        actor.disconnect(actor._statusAreaHorizontalSpacingSignalID);
+                        delete actor._statusAreaHorizontalSpacingSignalID;
+                        overrideStyle(container, actor);
+                    }
+                });
+        }
     }
 }
 
 function restoreOriginalStyle(actor) {
+    actor.disconnect(actor._statusAreaHorizontalSpacingSignalID);
+    delete actor._statusAreaHorizontalSpacingSignalID;
     if (actor.has_style_class_name('panel-button') && actor._original_inline_style_ !== undefined) {
         actor.set_style(actor._original_inline_style_);
         delete actor._original_inline_style_;
