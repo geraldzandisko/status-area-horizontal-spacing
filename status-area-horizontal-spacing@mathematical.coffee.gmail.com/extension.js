@@ -1,6 +1,6 @@
 /**
  * StatusAreaHorizontalSpacing extension
- * v1.0
+ * v2.0.1
  *
  * This extension essentially modifies the "-natural-hpadding" 
  * attribute of panel-buttons (i.e. indicators in the status area)
@@ -14,6 +14,10 @@
  * the style.
  *
  * 2012 mathematical.coffee@gmail.com
+ *
+ * v2.0.1:
+ * BUGFIX: User menu button resumes normal spacing on clicking/hovering.
+ * (panel.js _boxStyleChanged button.style='transition-duration: 0')
  */
 
 /// Set the padding between icons in pixels here.
@@ -23,12 +27,6 @@ const HPADDING = 6;
 /****************************
  * CODE
  ****************************/
-/* Option 1:
- * - create a new theme, application stylesheet is mine,
- *   demote all others, load custom stylesheets, replace current theme.
- * Option 2:
- * - listen to Main.panel._rightBox add-actor and do set_style.
- */
 const Mainloop = imports.mainloop;
 const St = imports.gi.St;
 const Shell = imports.gi.Shell;
@@ -47,13 +45,59 @@ function overrideStyle(container, actor) {
             actor._original_inline_style_ = actor.get_style();
         }
         actor.set_style(styleLine + '; ' + (actor._original_inline_style_ || ''));
+        /* listen for the style being set externally so we can re-apply our style */
+        // TODO: somehow throttle the number of calls to this - add a timeout with
+        // a flag?
+        if (!actor._statusAreaHorizontalSpacingSignalID) {
+            actor._statusAreaHorizontalSpacingSignalID =
+                actor.connect('style-changed', function () {
+                    let currStyle = actor.get_style();
+                    if (currStyle && !currStyle.match(styleLine)) {
+                        // re-save the style (if it has in fact changed)
+                        actor._original_inline_style_ = currStyle;
+                        // have to do this or else the overrideStyle call will trigger
+                        // another call of this, firing an endless series of these signals.
+                        // TODO: a ._style_pending which prevents it rather than disconnect/connect?
+                        actor.disconnect(actor._statusAreaHorizontalSpacingSignalID);
+                        delete actor._statusAreaHorizontalSpacingSignalID;
+                        overrideStyle(container, actor);
+                    }
+                });
+        }
     }
 }
 
 function restoreOriginalStyle(actor) {
+    actor.disconnect(actor._statusAreaHorizontalSpacingSignalID);
+    delete actor._statusAreaHorizontalSpacingSignalID;
     if (actor.has_style_class_name('panel-button') && actor._original_inline_style_ !== undefined) {
         actor.set_style(actor._original_inline_style_);
         delete actor._original_inline_style_;
+    }
+}
+
+/* Apply hpadding style to all existing actors & listen for more */
+function applyStyles() {
+    /* set style for everything in _rightBox */
+    let children = Main.panel._rightBox.get_children();
+    for (let i = 0; i < children.length; ++i) {
+        overrideStyle(Main.panel._rightBox, children[i]);
+    }
+
+    /* connect signal */
+    actorAddedID = Main.panel._rightBox.connect('actor-added', overrideStyle);
+}
+
+/* Remove hpadding style from all existing actors & stop listening for more */
+function removeStyles() {
+    /* disconnect signal */
+    if (actorAddedID) {
+        Main.panel._rightBox.disconnect(actorAddedID);
+    }
+    /* remove style class name. */
+    let children = Main.panel._rightBox.get_children();
+    for (let i = 0; i < children.length; ++i) {
+        restoreOriginalStyle(children[i]);
     }
 }
 
@@ -65,24 +109,9 @@ function init(extensionMeta) {
 }
 
 function enable() {
-    /* set style for everything in _rightBox */
-    let children = Main.panel._rightBox.get_children();
-    for (let i = 0; i < children.length; ++i) {
-        overrideStyle(Main.panel._rightBox, children[i]);
-    }
-
-    /* connect signal */
-    actorAddedID = Main.panel._rightBox.connect('actor-added', overrideStyle);
+    applyStyles();
 }
 
 function disable() {
-    /* disconnect signal */
-    if (actorAddedID) {
-        Main.panel._rightBox.disconnect(actorAddedID);
-    }
-    /* remove style class name. */
-    let children = Main.panel._rightBox.get_children();
-    for (let i = 0; i < children.length; ++i) {
-        restoreOriginalStyle(children[i]);
-    }
+    removeStyles();
 }
