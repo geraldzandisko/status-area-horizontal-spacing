@@ -1,6 +1,7 @@
 {
     "shell-version": [
-        "3.4"
+        "3.4",
+        "3.6"
         ],
     "uuid": "status-area-horizontal-spacing@mathematical.coffee.gmail.com",
     "name": "Status Area Horizontal Spacing",
