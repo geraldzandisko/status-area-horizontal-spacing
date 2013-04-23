@@ -1,4 +1,4 @@
-This is a GNOME shell extension that reduces the horizontal spacing between status area icons (top-right of the panel: volume indicator, etc). (Tested in GNOME 3.2, 3.4).
+This is a GNOME shell extension that reduces the horizontal spacing between status area icons (top-right of the panel: volume indicator, etc). (Tested in GNOME 3.2, 3.4, 3.6, 3.8).
 
 Status area before (default 12px hpadding):
 
@@ -23,7 +23,7 @@ Edit `extension.js` and change the line:
 to whatever spacing you want. The original GNOME-shell value is 12px, and the default for this plugin is 6px.
 At least 6px is recommended.
 
-### GNOME 3.4
+### GNOME 3.4+
 You can configure it via the extensions.gnome.org website, or using the `gnome-shell-extension-prefs` command.
 
 ## Alternatives
@@ -46,6 +46,6 @@ However this will be lost every time you change themes, upgrade gnome-shell, etc
 Branches are as follows:
 * 'default' branch is for development.
 * 'gnome3.2' branch is for GNOME 3.2. Configure it by editing `extension.js`.
-* 'gnome3.4' branch is for GNOME 3.4. Configure using `gnome-shell-extension-prefs`.
+* 'gnome3.4' branch is for GNOME 3.4+ (3.6, 3.8) Configure using `gnome-shell-extension-prefs`.
 * 'stable' branch: **obsolete** (renamed to 'gnome3.2').
 
