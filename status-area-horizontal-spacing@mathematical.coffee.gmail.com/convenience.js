@@ -18,6 +18,10 @@ function initTranslations(domain) {
 
     domain = domain || extension.metadata['gettext-domain'];
 
+    if (!domain) {
+        return;
+    }
+
     // check if this extension was built with "make zip-file", and thus
     // has the locale files in a subfolder
     // otherwise assume that extension has been installed in the
