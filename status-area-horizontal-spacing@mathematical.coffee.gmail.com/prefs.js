@@ -25,7 +25,7 @@ const StatusAreaHorizontalSpacingPrefsWidget = new GObject.Class({
             this.margin = this.row_spacing = this.column_spacing = 10;
 
         this._settings = Convenience.getSettings();
-        this.attach(new Gtk.Label({ label: 'Horizontal Padding' }), 0, 0, 1, 1);
+        this.attach(new Gtk.Label({ label: _("Horizontal Padding") }), 0, 0, 1, 1);
         let hscale = Gtk.Scale.new_with_range(Gtk.Orientation.HORIZONTAL, 0, 12, 1);
             hscale.set_value(this._settings.get_int('hpadding'));
             hscale.set_digits(0);
