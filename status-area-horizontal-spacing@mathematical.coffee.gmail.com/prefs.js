@@ -12,7 +12,7 @@ const Me = ExtensionUtils.getCurrentExtension();
 const Convenience = Me.imports.convenience;
 
 function init() {
-    Convenience.initTranslations();
+    Convenience.initTranslations("gnome-shell-extensions");
 }
 
 const StatusAreaHorizontalSpacingPrefsWidget = new GObject.Class({
