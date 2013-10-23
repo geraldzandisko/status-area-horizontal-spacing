@@ -2,7 +2,8 @@
     "shell-version": [
         "3.4",
         "3.6",
-        "3.8"
+        "3.8",
+        "3.10"
         ],
     "uuid": "status-area-horizontal-spacing@mathematical.coffee.gmail.com",
     "name": "Status Area Horizontal Spacing",
