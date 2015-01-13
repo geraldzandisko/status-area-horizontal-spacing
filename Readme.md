@@ -47,6 +47,6 @@ Branches are as follows:
 
 * 'default' branch is for development.
 * 'gnome3.2' branch is for GNOME 3.2. Configure it by editing `extension.js`.
-* 'gnome3.4' branch is for GNOME 3.4+ (3.6, 3.8) Configure using `gnome-shell-extension-prefs`.
+* 'gnome3.4' branch is for GNOME 3.4+ (3.6-3.12) Configure using `gnome-shell-extension-prefs`.
 * 'stable' branch: **obsolete** (renamed to 'gnome3.2').
 
