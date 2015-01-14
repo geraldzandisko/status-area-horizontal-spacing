@@ -15,6 +15,15 @@ Manual install: download the files (go to 'Downloads' and select the zip file).
 Start `gnome-tweak-tool` and select 'Shell Extensions > Install Shell Extension > (zip file you just downloaded)'. 
 
 ## Configuring
+
+### GNOME 3.10+
+You can configure it via the extensions.gnome.org website, or using the `gnome-shell-extension-prefs` command.
+The "horizontal spacing" setting is the padding between items in the top-right area of the panel.
+There is a new "status icon spacing" setting which is the spacing between the status icons in the new aggregate menu button (the single button that has all the wifi/battery etc icons).
+
+### GNOME 3.4+
+You can configure it via the extensions.gnome.org website, or using the `gnome-shell-extension-prefs` command.
+
 ### GNOME 3.2
 Edit `extension.js` and change the line:
 
@@ -22,9 +31,6 @@ Edit `extension.js` and change the line:
 
 to whatever spacing you want. The original GNOME-shell value is 12px, and the default for this plugin is 6px.
 At least 6px is recommended.
-
-### GNOME 3.4+
-You can configure it via the extensions.gnome.org website, or using the `gnome-shell-extension-prefs` command.
 
 ## Alternatives
 If you do not want to use the extension, you can modify `/usr/share/gnome-shell/theme/gnome-shell.css`: change the `-natural-hpadding` property of `.panel-button`, i.e.:
@@ -48,5 +54,6 @@ Branches are as follows:
 * 'default' branch is for development.
 * 'gnome3.2' branch is for GNOME 3.2. Configure it by editing `extension.js`.
 * 'gnome3.4' branch is for GNOME 3.4+ (3.6-3.12) Configure using `gnome-shell-extension-prefs`.
+* 'gnome3.10+' branch is for GNOME 3.10+ (3.10-3.12) Configure using `gnome-shell-extension-prefs`. On top of the gnome3.4 branch it also lets you set the horizontal padding of the "aggregate menu" button.
 * 'stable' branch: **obsolete** (renamed to 'gnome3.2').
 
