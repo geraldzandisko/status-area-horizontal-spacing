@@ -8,7 +8,8 @@
         "3.14",
 	"3.16",
 	"3.18",
-	"3.20"
+	"3.20",
+	"3.21.91"
         ],
     "uuid": "status-area-horizontal-spacing@mathematical.coffee.gmail.com",
     "name": "Status Area Horizontal Spacing",
