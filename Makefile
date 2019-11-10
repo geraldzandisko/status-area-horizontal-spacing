@@ -16,8 +16,5 @@ all:
 	fi
 
 zip: all
-	zip -rq $(EXTENSION)$(EXTENSION_BASE).zip $(FILES:%=$(EXTENSION)$(EXTENSION_BASE)/%)
-
-dev-zip: all
 	(cd $(EXTENSION)$(EXTENSION_BASE); \
 		zip -rq ../$(EXTENSION)$(EXTENSION_BASE).zip $(FILES))
