@@ -122,6 +122,7 @@ function restoreOriginalStyle(actor, secondTime) {
         actor.set_style(actor._original_inline_style_);
         delete actor._original_inline_style_;
     }
+    _refreshActor(actor);
 }
 
 /* Apply hpadding style to all existing actors & listen for more */
