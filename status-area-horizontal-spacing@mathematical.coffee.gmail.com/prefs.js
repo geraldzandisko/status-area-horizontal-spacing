@@ -43,7 +43,8 @@ const StatusAreaHorizontalSpacingPrefsWidget = new GObject.Class({
 
 function buildPrefsWidget() {
     let widget = new StatusAreaHorizontalSpacingPrefsWidget();
-    widget.show_all();
+    if (widget.show_all)
+      widget.show_all();
 
     return widget;
 }
