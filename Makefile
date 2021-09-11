@@ -17,4 +17,4 @@ all:
 
 zip: all
 	(cd $(EXTENSION)$(EXTENSION_BASE); \
-		zip -rq ../$(EXTENSION)$(EXTENSION_BASE).zip $(FILES))
+		zip -rq ../$(EXTENSION)$(EXTENSION_BASE).zip $(FILES) -x '*.po')
