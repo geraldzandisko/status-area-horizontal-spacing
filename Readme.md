@@ -2,11 +2,11 @@ This is a GNOME shell extension that reduces the horizontal spacing between stat
 
 Status area before (default 12px hpadding):
 
-![original (12px padding)](https://bytebucket.org/mathematicalcoffee/status-area-horizontal-spacing-gnome-shell-extension/raw/default/status_area_original.png)
+![original (12px padding)](status_area_original.png)
 
 Status area after (6px hpadding):
 
-![after with 6px padding](https://bytebucket.org/mathematicalcoffee/status-area-horizontal-spacing-gnome-shell-extension/raw/default/status_area_6px.png)
+![after with 6px padding](status_area_6px.png)
 
 ## Installation
 One-click install from extensions.gnome.org: [link here](https://extensions.gnome.org/extension/355/status-area-horizontal-spacing/).
