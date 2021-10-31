@@ -31,7 +31,6 @@ const Main = imports.ui.main;
 
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
-const Convenience = Me.imports.convenience;
 
 let actorAddedID, hpaddingChangedID, styleLine, padding, settings;
 
@@ -162,11 +161,11 @@ function removeStyles() {
 }
 
 function init(extensionMeta) {
-    Convenience.initTranslations();
+    ExtensionUtils.initTranslations();
 }
 
 function enable() {
-    settings = Convenience.getSettings();
+    settings = ExtensionUtils.getSettings();
     applyStyles();
     /* whenever the settings get changed, re-layout everything. */
     hpaddingChangedID = settings.connect('changed::hpadding', function () {
