@@ -2,7 +2,6 @@ const GLib = imports.gi.GLib;
 const GObject = imports.gi.GObject;
 const Gio = imports.gi.Gio;
 const Gtk = imports.gi.Gtk;
-const Lang = imports.lang;
 
 const Gettext = imports.gettext.domain('gnome-shell-extensions');
 const _ = Gettext.gettext;
@@ -30,7 +29,7 @@ const StatusAreaHorizontalSpacingPrefsWidget = new GObject.Class({
             hscale.set_value(this._settings.get_int('hpadding'));
             hscale.set_digits(0);
             hscale.set_hexpand(true);
-            hscale.connect('value-changed', Lang.bind(this, this._onHpaddingChanged));
+            hscale.connect('value-changed', this._onHpaddingChanged.bind(this));
         this.attach(hscale, 1, 0, 1, 1);
         this._hscale = hscale;
     },

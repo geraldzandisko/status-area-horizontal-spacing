@@ -163,10 +163,10 @@ function removeStyles() {
 
 function init(extensionMeta) {
     Convenience.initTranslations();
-    settings = Convenience.getSettings();
 }
 
 function enable() {
+    settings = Convenience.getSettings();
     applyStyles();
     /* whenever the settings get changed, re-layout everything. */
     hpaddingChangedID = settings.connect('changed::hpadding', function () {
