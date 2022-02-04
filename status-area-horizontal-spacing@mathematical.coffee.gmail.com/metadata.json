@@ -1,5 +1,5 @@
 {
-    "shell-version": ["40", "41"],
+    "shell-version": ["40", "41", "42"],
     "uuid": "status-area-horizontal-spacing@mathematical.coffee.gmail.com",
     "name": "Status Area Horizontal Spacing",
     "description": "Reduce the horizontal spacing between icons in the top-right status area",
