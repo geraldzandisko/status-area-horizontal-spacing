@@ -23,7 +23,6 @@
 /****************************
  * CODE
  ****************************/
-const Mainloop = imports.mainloop;
 const St = imports.gi.St;
 const Shell = imports.gi.Shell;
 
